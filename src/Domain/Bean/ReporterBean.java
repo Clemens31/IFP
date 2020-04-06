@@ -1,6 +1,6 @@
-package Domain;
+package Domain.Bean;
 
-public class Reporter {
+public class ReporterBean {
 
     private int id;
     private String pseudo ;

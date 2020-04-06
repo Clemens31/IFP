@@ -12,9 +12,13 @@ public class ConnectionDatabase {
         try {
             // Chargement du pilote JDBC
             Class.forName(nomDriver);
+            System.out.println("**********************************");
             System.out.println("Le pilote JDBC MySQL a été chargé");
+            System.out.println("**********************************");
+
 
             // Information connexion BDD
+            // TODO mettre dans un fichier property
             String url ="jdbc:mysql://localhost:3306/IFP?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             String user = "root";
             String password = "";

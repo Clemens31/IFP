@@ -1,14 +1,14 @@
-package Domain;
+package Domain.Bean;
 
 import java.util.Date;
 
-public class News {
+public class NewsBean {
 
     // Attributs
     private int id;
     private String title ;
     private String contain ;
-    private Date date ;
+    private String date ;
     private int id_reporter;
 
 
@@ -39,11 +39,11 @@ public class News {
         this.contain = contain;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

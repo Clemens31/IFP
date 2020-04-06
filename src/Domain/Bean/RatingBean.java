@@ -1,6 +1,6 @@
-package Domain;
+package Domain.Bean;
 
-public class Rating {
+public class RatingBean {
 
     private int id;
     private int note;

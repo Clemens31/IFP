@@ -11,12 +11,19 @@ public class Main {
     public static void main(String[] args)  {
 
         // 1. Lire un reporter par son id :
-        
         ReporterDao reporterDao = new ReporterDao();
-        reporterDao.getAllReporter();
+        try{
+            reporterDao.getReporterById(1);
+        }catch (SQLException | NoDataFoundException e ){
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println(" ");
 
         // 2. Lire une new
-        // 2.1 avec son journaliste
         NewsDao newsDao = new NewsDao();
         try {
             newsDao.getNewsById(2);
@@ -24,6 +31,11 @@ public class Main {
             e.printStackTrace();
             System.exit((-1));
         }
+
+
+        // 2.1 avec son journaliste
+
+
 
         // 2.2 en récupérant la liste de tags
 

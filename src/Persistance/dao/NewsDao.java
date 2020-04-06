@@ -1,6 +1,6 @@
 package Persistance.dao;
 
-import Domain.News;
+import Domain.DTO.NewsDTO;
 import Persistance.ConnectionDatabase;
 import Persistance.Exception.NoDataFoundException;
 
@@ -9,36 +9,39 @@ import java.sql.SQLException;
 
 public class NewsDao {
 
-    public News getNewsById(int id) throws SQLException, NoDataFoundException {
+    public NewsDTO getNewsById(int id) throws SQLException, NoDataFoundException {
+
         // Création d'une instance de la classe ConnectionDatabase
         ConnectionDatabase connectionDatabase = new ConnectionDatabase();
-        // Création d'une instance de la classe News
-        News news = new News();
+        // Création d'une instance de la classe NewsDTO
+        NewsDTO newsDTO = new NewsDTO();
 
         try {
             var connection = connectionDatabase.getConnection();
             var statement = connection.createStatement();
 
-            // Requete SQL pour récupérer tout depuis
+            // Requete SQL
             ResultSet resultSet = statement.executeQuery("SELECT * from news WHERE id_news= " + id);
 
+
+            System.out.println(" ");
+            System.out.println("AFFICHAGE DES NEWS : ");
+            System.out.println(" ");
+
             if(resultSet.next()){
-                System.out.println("AFFICHAGE DES NEWS : ");
+                newsDTO.setId(resultSet.getInt(1));
+                newsDTO.setTitle(resultSet.getString(2));
+                newsDTO.setContain(resultSet.getString(3));
+                newsDTO.setDate(resultSet.getString(4));
+                newsDTO.setId_reporter(resultSet.getInt(5));
 
-                // Ajout dans mon objet du domain des données
-                news.setId(resultSet.getInt(1));
-                news.setTitle(resultSet.getString(2));
-                news.setContain(resultSet.getString(3));
-                news.setDate(resultSet.getDate(4));
-                news.setId_reporter(resultSet.getInt(5));
+                // Affichage de ma new
+                System.out.println(newsDTO.toString());
 
-                System.out.println(news.getId());
-                System.out.println(news.getTitle());
-                System.out.println(news.getContain());
-                System.out.println(news.getDate());
-                System.out.println(news.getId_reporter());
+                // Fermeture Connexion
+                connection.close();
 
-                return news;
+                return newsDTO;
             }else {
                 throw new NoDataFoundException("Data not found in NewsDao::getNewsById()");
             }
@@ -47,6 +50,7 @@ public class NewsDao {
             throw e;
         }
     }
+
 
 
 }

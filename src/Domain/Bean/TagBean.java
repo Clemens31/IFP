@@ -1,6 +1,6 @@
-package Domain;
+package Domain.Bean;
 
-public class Tag {
+public class TagBean {
 
     private int id;
     private String tag;
