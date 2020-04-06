@@ -1,6 +1,6 @@
 package Persistance.dao;
 
-import Domain.DTO.NewsDTO;
+import Domain.NewsBean;
 import Persistance.ConnectionDatabase;
 import Persistance.Exception.NoDataFoundException;
 
@@ -9,16 +9,16 @@ import java.sql.SQLException;
 
 public class NewsDao {
 
-    public NewsDTO getNewsById(int id) throws SQLException, NoDataFoundException {
+    public NewsBean getNewsById(int id) throws SQLException, NoDataFoundException {
 
         // Création d'une instance de la classe ConnectionDatabase
         ConnectionDatabase connectionDatabase = new ConnectionDatabase();
         // Création d'une instance de la classe NewsDTO
-        NewsDTO newsDTO = new NewsDTO();
+        NewsBean newsBean = new NewsBean();
 
         try {
             var connection = connectionDatabase.getConnection();
-            var statement = connection.createStatement();
+            var statement = connection.createStatement(); // CHANGER par prepareStatement
 
             // Requete SQL
             ResultSet resultSet = statement.executeQuery("SELECT * from news WHERE id_news= " + id);
@@ -29,28 +29,34 @@ public class NewsDao {
             System.out.println(" ");
 
             if(resultSet.next()){
-                newsDTO.setId(resultSet.getInt(1));
-                newsDTO.setTitle(resultSet.getString(2));
-                newsDTO.setContain(resultSet.getString(3));
-                newsDTO.setDate(resultSet.getString(4));
-                newsDTO.setId_reporter(resultSet.getInt(5));
+                TranferStatementOnObjectBean(resultSet, newsBean );
 
                 // Affichage de ma new
-                System.out.println(newsDTO.toString());
+                System.out.println(newsBean.toString());
 
                 // Fermeture Connexion
                 connection.close();
 
-                return newsDTO;
+                return newsBean;
             }else {
                 throw new NoDataFoundException("Data not found in NewsDao::getNewsById()");
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
     }
 
+    public NewsBean TranferStatementOnObjectBean(ResultSet resultSet, NewsBean newsBean) throws SQLException{
+        newsBean.setId(resultSet.getInt(1));
+        newsBean.setTitle(resultSet.getString(2));
+        newsBean.setContain(resultSet.getString(3));
+        newsBean.setDate(resultSet.getDate(4));
+        newsBean.setReporter(resultSet.getString(5));
+
+        return newsBean;
+    }
 
 
 }

@@ -1,18 +1,17 @@
-package Domain.DTO;
+package Domain;
 
-public class ReporterDTO {
+import java.util.Objects;
+
+public class ReporterBean {
 
     private int id;
     private String pseudo ;
     private int credit;
 
-    public ReporterDTO(){
+    public ReporterBean() {
     }
 
-    public ReporterDTO(int id, String pseudo, int credit) {
-        this.id = id;
-        this.pseudo = pseudo;
-        this.credit = credit;
+    public ReporterBean(int i, String bob, int i1) {
     }
 
     public int getId() {
@@ -41,10 +40,27 @@ public class ReporterDTO {
 
     @Override
     public String toString() {
-        return "ReporterDTO{" +
+        return "ReporterBean{" +
                 "id=" + id +
                 ", pseudo='" + pseudo + '\'' +
                 ", credit=" + credit +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReporterBean that = (ReporterBean) o;
+        return id == that.id &&
+                credit == that.credit &&
+                Objects.equals(pseudo, that.pseudo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pseudo, credit);
+    }
+
+
 }

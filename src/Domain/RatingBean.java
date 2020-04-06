@@ -1,4 +1,4 @@
-package Domain.Bean;
+package Domain;
 
 public class RatingBean {
 
