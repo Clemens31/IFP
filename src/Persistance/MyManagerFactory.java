@@ -12,4 +12,8 @@ public class MyManagerFactory {
         return entityManagerFactory.createEntityManager();
     }
 
+    public void close() {
+        entityManagerFactory.close();
+    }
+
 }

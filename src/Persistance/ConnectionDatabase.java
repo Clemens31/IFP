@@ -1,4 +1,4 @@
-package Persistance;
+/*package Persistance;
 
 import java.sql.*;
 
@@ -35,3 +35,4 @@ public class ConnectionDatabase {
     }
 
 }
+*/

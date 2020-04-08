@@ -1,17 +1,26 @@
-package Domain;
+package Persistance.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-public class ReporterBean {
+@Entity
+@Table(name = "reporter")
+public class ReporterEntity {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column (name = "id_reporter")
     private int id;
+
+    @Column (name = "name")
     private String pseudo ;
+
+    @Column (name = "credit")
     private int credit;
 
-    public ReporterBean() {
-    }
+    public ReporterEntity(){}
 
-    public ReporterBean(int id, String pseudo, int credit) {
+    public ReporterEntity(int id, String pseudo, int credit) {
         this.id = id;
         this.pseudo = pseudo;
         this.credit = credit;
@@ -42,19 +51,10 @@ public class ReporterBean {
     }
 
     @Override
-    public String toString() {
-        return "ReporterBean{" +
-                "id=" + id +
-                ", pseudo='" + pseudo + '\'' +
-                ", credit=" + credit +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ReporterBean that = (ReporterBean) o;
+        ReporterEntity that = (ReporterEntity) o;
         return id == that.id &&
                 credit == that.credit &&
                 Objects.equals(pseudo, that.pseudo);
@@ -65,5 +65,12 @@ public class ReporterBean {
         return Objects.hash(id, pseudo, credit);
     }
 
-
+    @Override
+    public String toString() {
+        return "ReporterEntity{" +
+                "id=" + id +
+                ", pseudo='" + pseudo + '\'' +
+                ", credit=" + credit +
+                '}';
+    }
 }

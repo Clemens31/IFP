@@ -1,9 +1,8 @@
-package Persistance.dao;
+package Persistance;
 
-import Persistance.MyManagerFactory;
 import org.junit.jupiter.api.Test;
 
-import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 

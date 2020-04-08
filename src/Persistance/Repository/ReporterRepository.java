@@ -1,21 +1,10 @@
 package Persistance.Repository;
 
-import Persistance.MyManagerFactory;
 
-import javax.persistence.EntityManager;
+import Persistance.entity.ReporterEntity;
 
-public class ReporterRepository {
+public interface ReporterRepository {
 
-    /* Implémentation de la factory */
-    MyManagerFactory myManagerFactory ;
-
-    /* Création de notre objet EntityManager via la factory */
-    EntityManager entityManager = myManagerFactory.getEntityManagerFactory();
-
-
-    public void find
-
-
-
+    public ReporterEntity find(Integer id);
 
 }
