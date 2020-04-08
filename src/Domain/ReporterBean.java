@@ -11,7 +11,10 @@ public class ReporterBean {
     public ReporterBean() {
     }
 
-    public ReporterBean(int i, String bob, int i1) {
+    public ReporterBean(int id, String pseudo, int credit) {
+        this.id = id;
+        this.pseudo = pseudo;
+        this.credit = credit;
     }
 
     public int getId() {

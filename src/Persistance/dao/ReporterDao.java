@@ -35,7 +35,7 @@ public class ReporterDao {
                 reporterBean.setCredit(resultSet.getInt(3));
 
             // Affichage de mon reporter
-            System.out.println(reporterBean.toString());
+            //System.out.println(reporterBean.toString());
 
             // Fermeture
             connection.close();

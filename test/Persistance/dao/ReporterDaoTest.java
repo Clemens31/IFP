@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReporterDaoTest {
 
 
+    // Constante à mettre
+
     @Test
     void getReporterByIdPseudoSimilaireDansLaBase() {
         ReporterDao reporterDao = new ReporterDao();
@@ -19,12 +21,12 @@ class ReporterDaoTest {
         try {
             reporterBean = reporterDao.getReporterById(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            fail();
         } catch (NoDataFoundException e) {
-            e.printStackTrace();
             fail();
         }
         assertEquals("bob",reporterBean.getPseudo());
+
     }
 
     @Test
@@ -43,24 +45,26 @@ class ReporterDaoTest {
     }
 
     @Test
-    void getReporterByIdNonExistantEnBase(){
-        // TODO
+    void getReporterByIdNonExistantEnBase() {
+        ReporterDao reporterDao = new ReporterDao();
+        // Cas d'un ID qui n'existe pas
+         assertThrows(NoDataFoundException.class, () ->
+                reporterDao.getReporterById(18595));
     }
 
     @Test
     void getReporterGetCorrectObject(){
         ReporterDao reporterDao = new ReporterDao();
         ReporterBean reporterInitial = new ReporterBean(1,"bob",5);
-        ReporterBean reporterRecup = new ReporterBean();
+        ReporterBean reporterRecup = null;
 
         try {
             reporterRecup = reporterDao.getReporterById(1);
         } catch (SQLException e) {
-            e.printStackTrace();
+            fail();
         } catch (NoDataFoundException e) {
-            e.printStackTrace();
+            fail();
         }
-
         // J'ai trouvé comment comparé deux objets mais je n'y arrive pas
         assertEquals(reporterInitial, reporterRecup);
     }
